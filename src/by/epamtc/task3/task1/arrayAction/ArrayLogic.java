@@ -1,9 +1,11 @@
-package by.epamtc.task3.task1.arrayActions;
+package by.epamtc.task3.task1.arrayAction;
 
+import by.epamtc.task3.task1.entity.Array;
 import by.epamtc.task3.utility.NullException;
 
 public class ArrayLogic {
-    public static int[] findPrimeValues(int[] arr) throws NullException {
+    public static int[] findPrimeValues(Array array) throws NullException {
+        int[] arr = array.copy();
         if (arr == null) throw new NullException("Array is null");
         int[] primeArray = new int[arr.length];
         int primeIndex = -1;
@@ -32,15 +34,15 @@ public class ArrayLogic {
         return formattedPrimeArray;
     }
 
-    public static int[] findFibonacciNumbers(int[] arr) throws NullException {
+    public static int[] findFibonacciNumbers(Array array) throws NullException {
+        int [] arr = array.copy();
         if (arr == null) throw new NullException("Array is null");
         int[] fibonacciArray = new int[arr.length];
         int fibonacciIndex = -1;
         int fibonacciNumberCount = 0;
         for (int i : arr) {
             boolean isFibonacci = i > 0;
-            if (i == 1) {
-            } else {
+            if (i != 1) {
                 int a = 1, b = 1;
                 int nextFibonacci = 0;
                 while (nextFibonacci < i) {
@@ -58,10 +60,10 @@ public class ArrayLogic {
         int[] formattedPrimeArray = new int[fibonacciNumberCount];
         System.arraycopy(fibonacciArray, 0, formattedPrimeArray, 0, fibonacciNumberCount);
         return formattedPrimeArray;
-
     }
 
-    public static int[] findThreeDigitNumberWithDifferentDigit(int[] arr) throws NullException {
+    public static int[] findThreeDigitNumberWithDifferentDigit(Array array) throws NullException {
+        int [] arr = array.copy();
         if (arr == null) throw new NullException("Array is null");
         int[] threeDigitArray = new int[arr.length];
         int threeDigitIndex = -1;

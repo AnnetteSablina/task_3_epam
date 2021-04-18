@@ -1,26 +1,24 @@
 package by.epamtc.task3.task1.entity;
 
-
-import by.epamtc.task3.task1.sortAction.Sort;
-import by.epamtc.task3.task1.sortAction.SortActions;
+import by.epamtc.task3.task1.sort.Sortable;
 import by.epamtc.task3.utility.NullException;
 import by.epamtc.task3.utility.ZeroException;
 
-import java.util.Arrays;
-
-public class Array implements Sort {
+public class Array {
     private final int[] array;
 
-    public Array(int[] array) {
-        this.array = Arrays.copyOf(array, array.length);
+    public Array(int[] arr) {
+        this.array = new int[arr.length];
+        for (int index = 0; index < array.length; index++)
+            this.array[index] = arr[index];
     }
 
     public Array(int size) {
         this.array = new int[size];
     }
 
-    public int[] getArray() {
-        return array;
+    public int getArrayLength() {
+        return array.length;
     }
 
     @Override
@@ -35,7 +33,7 @@ public class Array implements Sort {
                 isEqual = false;
                 break;
             }
-        return  isEqual;
+        return isEqual;
     }
 
     @Override
@@ -57,53 +55,27 @@ public class Array implements Sort {
         }
         return result;
     }
-
-    @Override
-    public Array bubbleSort() throws ZeroException, NullException {
-        if (array.length == 0) throw new ZeroException("Array has 0 length");
-        boolean needIteration = true;
-        while (needIteration) {
-            needIteration = false;
-            for (int index = 1; index < array.length; index++) {
-                if (array[index] < array[index - 1]) {
-                    SortActions.swap(array, index, index - 1);
-                    needIteration = true;
-                }
-            }
-        }
-        return this;
+    public void swap(int ind1, int ind2) throws NullException {
+        if (array == null) throw new NullException("Array is null");
+        int tmp = array[ind1];
+        array[ind1] = array[ind2];
+        array[ind2] = tmp;
     }
 
-    @Override
-    public Array selectionSort() throws ZeroException, NullException {
-        if (array.length == 0) throw new ZeroException("Array has 0 length");
-        for (int left = 0; left < array.length; left++) {
-            int minIndex = left;
-            for (int i = left; i < array.length; i++) {
-                if (array[i] < array[minIndex]) {
-                    minIndex = i;
-                }
-            }
-            SortActions.swap(array, left, minIndex);
+    public int[] copy(){
+        int[] arr = new int [array.length];
+        for (int index = 0; index<array.length;index++){
+            arr[index] = array[index];
         }
-        return this;
+        return arr;
+    }
+    public int getValue (int index){
+        return array[index];
     }
 
-    @Override
-    public Array shuttleSort() throws ZeroException, NullException {
-        if (array.length == 0) throw new ZeroException("Array has 0 length");
-        for (int index = 1; index < array.length; index++) {
-            if (array[index] < array[index - 1]) {
-                SortActions.swap(array, index, index - 1);
-                for (int z = index - 1; z >= 0; z--) {
-                    if (array[z] < array[z - 1]) {
-                        SortActions.swap(array, z, z - 1);
-                    } else {
-                        break;
-                    }
-                }
-            }
-        }
-        return this;
+
+
+    public void sort(Sortable sort) throws NullException {
+        sort.sort(this);
     }
 }

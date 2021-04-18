@@ -7,16 +7,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class FillArray {
-    public static int[] FillWithRandomValue(int[] arr) throws ZeroException {
+    public static void fillWithRandomValue(int[] arr) throws ZeroException {
         if (arr.length == 0) throw new ZeroException("The size of the array is 0");
         Random random = new Random();
         for (int index = 0; index < arr.length; index++) {
             arr[index] = random.nextInt(100) - 50;
         }
-        return arr;
     }
 
-    public static int[] FillValueFromFile(String fileName) throws IOException {
+    public static int[] fillValueFromFile(String fileName) throws IOException {
         fileName = fileName + ".txt";
         FileReader fileReader = new FileReader(fileName);
         Scanner scanner = new Scanner(fileReader);
@@ -29,12 +28,11 @@ public class FillArray {
         return arr;
     }
 
-    public static int[] FillValueFromConsole(int[] arr) throws ZeroException, NegativeException {
+    public static void fillValueFromConsole(int[] arr) throws ZeroException, NegativeException {
         if (arr.length == 0) throw new ZeroException("The size of the array in 0");
         for (int index = 0; index < arr.length; index++) {
             arr[index] = EnterIntegerValue.enterValue("Enter the " + Integer.toString(index + 1)
                     + " value of the array", Mode.ANY);
         }
-        return arr;
     }
 }

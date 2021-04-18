@@ -1,17 +1,19 @@
-package by.epamtc.task3.task1.arrayActions;
+package by.epamtc.task3.task1.arrayAction;
 
 
 import by.epamtc.task3.task1.entity.Array;
+import by.epamtc.task3.task1.sort.SelectionSort;
 import by.epamtc.task3.utility.NullException;
-import by.epamtc.task3.utility.ZeroException;
 
 public class ValueLogic {
-    public static int binarySearch(int [] arr,int requiredValue,int first,int last) throws NullException, ZeroException {
+    public static int binarySearch(Array array,int requiredValue) throws NullException {
+        array.sort(new SelectionSort());
+        int[] arr = array.copy();
         if (arr == null) throw new NullException("Array is null");
-        Array array = new Array (arr);
-        arr = array.selectionSort().getArray();
         int index = -1;
-        while (first <= last) {
+        int first = 0;
+        int last = arr.length;
+        while ( first  <= last) {
             int middle = (first + last) / 2;
             if(arr[middle] < requiredValue) {
                 first = middle + 1;
@@ -24,7 +26,8 @@ public class ValueLogic {
         }
         return index;
     }
-    public static int findMaxValue(int [] arr) throws NullException {
+    public static int findMaxValue(Array array) throws NullException {
+        int [] arr = array.copy();
         if (arr == null) throw new NullException("Array is null");
         int maxValue = arr[0];
         for (int i : arr) {
@@ -34,7 +37,8 @@ public class ValueLogic {
         }
         return maxValue;
     }
-    public static int findMinValue(int [] arr) throws NullException {
+    public static int findMinValue(Array array) throws NullException {
+        int [] arr = array.copy();
         if (arr == null) throw new NullException("Array is null");
         int minValue = arr[0];
         for (int i : arr) {
