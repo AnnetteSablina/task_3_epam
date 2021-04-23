@@ -18,15 +18,7 @@ public class JuggedArraySort {
                     jaggedArray[i] = jaggedArray[j];
                     jaggedArray[j] = tmp;
                 }
-               /* if (type == CompareType.MAXROWSUMMA && (CompareService.compareArrayRowSum(jaggedArray[i], jaggedArray[j]) > 0)) {
-                    isNeedReverse = false;
-                }
-                if (type == CompareType.MAXVALUE && (CompareService.compareMaxRowValue(jaggedArray[i], jaggedArray[j]) > 0)) {
-                    isNeedReverse = false;
-                }
-                if (type == CompareType.MINVALUE && (CompareService.compareMinRowValue(jaggedArray[i], jaggedArray[j]) < 0)) {
-                    isNeedReverse = false;
-                }*/
+              
 
             }
         }
